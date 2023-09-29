@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Demo_projects.Models.Billing>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center text-primary">Home Record</h1>
+            <p class="text-center text-success">@TempData["Error"]</p>
+            <a class="btn btn-sm btn-success m-1" asp-controller="Home" asp-action="Create">Add Bill</a>
+             <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>Biil No</th>
+                    <th>Customert No</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>IsPaid</th>
+                    <th>Action</th>
+                </tr>
+                @if (Model != null)
+                {
+                   @foreach (var item in Model)
+                   {
+                         <tr class="text-center">
+                               <td>@item.BillNo</td>
+                               <td>@item.CustomertNo</td>
+                               <td>@item.Date</td>
+                               <td>@item.Amount</td>
+                               <td>@item.IsPaid</td>
+                            
+                               <td>
+                                <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Edit" asp-route-Id="@item.BillNo">Edit Bill</a>
+                                <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="delete" asp-route-Id="@item.BillNo">Delete Bill</a>
+                               </td>                     
+
+                         </tr>
+                   }
+                }                               
+             </table>
+        </div>
+    </div>
+</div>
